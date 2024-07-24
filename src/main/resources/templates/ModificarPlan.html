@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Plan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-6IzQpiA+sJgEY8qzNT5UlRUjoE2nupNC/M6aHf1hr8v7pEfbF0uNhRdx/Wvuv3K8LgScZwQGx/0FofBcAB9TGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --background: #c2f2cb;
+      --navbar-dark-primary: #18283b;
+      --navbar-dark-secondary: #2c3e50;
+      --navbar-light-primary: #f5f6fa;
+      --navbar-light-secondary: #8392a5;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--navbar-dark-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--navbar-dark-secondary);
+    }
+
+    a {
+      color: var(--navbar-dark-secondary);
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: var(--navbar-light-primary);
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--navbar-dark-primary);
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid var(--navbar-light-secondary);
+      border-radius: 5px;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--navbar-dark-secondary);
+      outline: none;
+      box-shadow: 0 0 10px rgba(44, 62, 80, 0.2);
+    }
+
+    button {
+      background-color: var(--navbar-dark-secondary);
+      color: var(--navbar-light-primary);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 1.1em;
+      font-weight: bold;
+      display: block;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: var(--navbar-dark-primary);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      background-color: var(--navbar-light-secondary);
+      transform: translateY(1px);
+    }
+  </style>
+</head>
+<body>
+<h1>Agendar visita</h1>
+<a th:href="@{/Plan.html}">Regresar</a>
+<form action="#" th:action="@{/GuardarPlan}" th:object="${plan}" method="post">
+  <input type="hidden" name="id_plan" th:field="*{id_plan}"/>
+  <label for="fecha">Fecha:</label>
+  <input type="date" id="fecha" name="fecha" th:field="*{fecha}" />
+  <label for="actividad">Actividad Turística:</label>
+  <select id="actividad" name="actividad.id_actividad" th:field="*{actividad.id_actividad}">
+    <option value="" disabled selected>Seleccione una actividad</option>
+    <option th:each="act : ${actividades}" th:value="${act.id_actividad}" th:text="${act.nombre}"></option>
+  </select>
+  <button type="submit">Guardar</button>
+</form>
+<script th:inline="javascript">
+  var idPlan = /*[[${plan.id_plan}]]*/ null;
+
+  if (!idPlan) {
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0');
+    var year = today.getFullYear();
+    var todayFormatted = year + '-' + month + '-' + day;
+    document.getElementById('fecha').value = todayFormatted;
+  }
+</script>
+</body>
+</html>

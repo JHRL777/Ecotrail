@@ -1,0 +1,69 @@
+
+
+.lista-titulo{
+    color: #c2f2cb;
+}
+
+.planes{
+    color: red;
+}
+
+.button-crear {
+  display: flex;
+  align-items: center;
+  background-color: var(--navbar-dark-secondary);
+  color: var(--navbar-light-primary);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-crear i {
+  margin-right: 10px;
+}
+
+.button-crear:hover {
+  background-color: var(--navbar-dark-primary);
+  transform: translateY(-2px);
+}
+
+.button-crear:active {
+  background-color: var(--navbar-light-secondary);
+  transform: translateY(1px);
+}
+
+
+table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Espacio superior */
+            border: 1px solid var(--border-color); /* Color del borde */
+            background-color: var(--background); /* Color de fondo */
+            color: var(--text-dark); /* Color de texto oscuro */
+}
+
+th, td {
+            border: 1px solid var(--border-color); /* Color del borde */
+            padding: 8px;
+            text-align: left;
+}
+
+th {
+            background-color: var(--navbar-dark-secondary);
+             color: var(--navbar-light-primary);
+}
+
+        /* Estilos para los enlaces */
+a {
+            color: var(--link-color); /* Color de los enlaces */
+            text-decoration: none;
+}
+
+a:hover {
+            text-decoration: underline; /* Subrayado al pasar el mouse */
+}
